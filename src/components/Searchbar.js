@@ -2,7 +2,7 @@ import React from 'react'
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
-const Searchbar = () => {
+const Searchbar = ({searchMovie,onChangeHandler,query}) => {
     const classes = useStyles();
   return (
     <div className={classes.formControl}>
@@ -11,8 +11,10 @@ const Searchbar = () => {
           InputProps={{ disableUnderline: true }}
           variant="filled"
           placeholder="Movie Name"
+          value={query}
+          onChange={onChangeHandler}
         />
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" onClick={searchMovie}>
           Search
         </Button>
       </div>
