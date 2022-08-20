@@ -22,13 +22,9 @@ function App() {
       <Navbar />
       <div className={classes.root}>
         <div className={classes.container}>
-          <Grid container justifyContent="center">
-            {movie.map((items) => (
-              <Grid item xs={6} sm={3}>
-                <MovieCard key={items.id} {...items} />
-              </Grid>
-            ))}
-          </Grid>
+          {movie.map((items) => (
+            <MovieCard key={items.id} {...items} />
+          ))}
         </div>
       </div>
     </>
@@ -37,9 +33,16 @@ function App() {
 
 const useStyles = makeStyles({
   container: {
-    padding: "72px 56px 0px 56px",
+    width: "100%",
+    float: "left",
+    padding: 0,
+    background: "#191919",
+    border: "1px solid #333",
+    boxSizing: "border-box",
+    marginBottom: "4px",
   },
   root: {
+    padding: "72px 56px 0px 56px",
     backgroundColor: "#100F0F",
     minHeight: "100vh",
     display: "flex",
