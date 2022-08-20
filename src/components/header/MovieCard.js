@@ -1,5 +1,10 @@
 import React from "react";
-import { makeStyles, Paper } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
 const API_IMG = "https://image.tmdb.org/t/p/w500/";
 
 const MovieCard = ({
@@ -11,40 +16,35 @@ const MovieCard = ({
 }) => {
   const classes = useStyles();
   return (
-    <div className={classes.movie}>
-      <div className={classes.movieBox}>
-        <div className={classes.movieTitle}>
-          <span style={{ color: "white" }}>{title}</span>
+    <div>
+      <div className={classes.root}>
+        <div className={classes.title}>
+          <span>{title}</span>
         </div>
-        <div className={classes.image}>
-          <img src={API_IMG + poster_path}></img>
-        </div>
+        <img src={API_IMG + poster_path} className={classes.image}></img>
       </div>
     </div>
   );
 };
 const useStyles = makeStyles({
-  movie: {
-    position: "relative",
-    width: "25%",
-    float: "left",
-    boxSizing: "border-box",
-    padding: "4px",
-  },
-  movieBox: {
-    position: "relative",
-    width: "auto",
+  image: {
+    width: "100%",
     height: "auto",
-    background: "#242424",
-    textAlign: "center",
-    margin: "0",
-    padding: "4px",
-    border: "1px solid #444",
-    borderRadius: "4px 4px 0 0",
-    overflow: "hidden",
-    boxSizing: "content-box",
   },
-  movieTitle: {
+  root: {
+    textAlign: "center",
+    position: "relative",
+    width: "100%",
+    cursor: "pointer",
+    "&:hover": {
+      "& $title": {
+        color: "yellow",
+      },
+    },
+  },
+  title: {
+    fontSize: "24px",
+    color: "white",
     width: "100%",
     height: "auto",
     position: "absolute",
@@ -52,7 +52,6 @@ const useStyles = makeStyles({
     background: "rgba(0,0,0,.7)",
     padding: "4px",
     boxSizing: "border-box",
-    marginLeft: "-4px",
   },
 });
 export default MovieCard;
