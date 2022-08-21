@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Badge from "@material-ui/core/Badge";
 const Navbar = (props) => {
   const classes = useStyles();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <div className={classes.root}>
       <h1
