@@ -1,13 +1,18 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-
-
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 const Navbar = () => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <h1 style={{ cursor: "pointer" }}>Movie</h1>
+      <h1
+        style={{ cursor: "pointer" }}
+        onClick={() => (window.location.href = "/")}
+      >
+        Movie
+      </h1>
+      <ShoppingCartIcon style={{ cursor: "pointer" }} />
     </div>
   );
 };
