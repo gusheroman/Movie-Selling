@@ -4,19 +4,19 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./Home";
 import Checkout from "./components/Checkout";
 import { makeStyles } from "@material-ui/core";
+
 const getMovieInBasket = () => {
-  const list = localStorage.getItem("cartItems");
-  console.log(list);
+  let list = localStorage.getItem("cartItems");
   if (list) {
     return JSON.parse(localStorage.getItem("cartItems"));
   } else {
     return [];
   }
 };
+
 function App() {
   const classes = useStyles();
   const [cartItems, setCartItems] = useState(getMovieInBasket());
-  
 
   useEffect(() => {
     if (cartItems.length !== 0) {
@@ -24,10 +24,30 @@ function App() {
     }
   }, [cartItems]);
 
+  const removeFromStorage = () => {
+    try {
+      localStorage.removeItem("cartItems");
+      setCartItems([]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeFromStorageSpecific = (id) => {
+    try {
+      const arr = cartItems.filter((item) => item.id !== id);
+      localStorage.removeItem("cartItems");
+      setCartItems(arr);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+
   const addToCart = (items) => {
-    if (cartItems.indexOf(items) !== -1) return;
+    if (cartItems.indexOf(items) !== -1 ) return;
+    console.log(items)
     setCartItems([...cartItems, items]);
-    
   };
 
   return (
@@ -39,7 +59,12 @@ function App() {
           <Route
             path="/checkout"
             element={
-              <Checkout cartItems={cartItems} setCartItems={setCartItems} />
+              <Checkout
+                cartItems={cartItems}
+                setCartItems={setCartItems}
+                removeFromStorage={removeFromStorage}
+                removeFromStorageSpecific={removeFromStorageSpecific}
+              />
             }
           />
         </Routes>

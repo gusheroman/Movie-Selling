@@ -10,7 +10,7 @@ const Navbar = (props) => {
     <div className={classes.root}>
       <h1
         style={{ cursor: "pointer" }}
-        onClick={() => (window.location.href = "/")}
+        onClick={() => navigate("/")}
       >
         Movie
       </h1>
