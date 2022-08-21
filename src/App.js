@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./components/header/Navbar";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Home";
@@ -7,15 +7,25 @@ import { makeStyles } from "@material-ui/core";
 
 function App() {
   const classes = useStyles();
+  const [cartItems, setCartItems] = useState([]);
+
+  const addToCart = (items) => {
+    if (cartItems.indexOf(items) !== -1) return;
+    setCartItems([...cartItems, items]);
+    console.log(cartItems);
+  };
 
   return (
     <>
-      <Navbar />
+      <Navbar cartItems={cartItems.length} />
       <div className={classes.root}>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/checkout" element={<Checkout />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Home addToCart={addToCart} />} />
+          <Route
+            path="/checkout"
+            element={<Checkout cartItems={cartItems} setCartItems={setCartItems} />}
+          />
+        </Routes>
       </div>
     </>
   );

@@ -3,13 +3,14 @@ import { makeStyles } from "@material-ui/core";
 import MovieCard from "./components/MovieCard";
 import Grid from "@material-ui/core/Grid";
 import Searchbar from "./components/Searchbar";
-const Home = () => {
+
+const Home = ({ addToCart }) => {
   const API_URL =
     "https://api.themoviedb.org/3/movie/popular?api_key=f0b959cbcbffe50ac134dda60eaa7e74";
   const classes = useStyles();
   const [query, setQuery] = useState("");
   const [movie, setMovies] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
+
   useEffect(() => {
     fetch(API_URL)
       .then((res) => res.json())
@@ -36,12 +37,6 @@ const Home = () => {
     setQuery(e.target.value);
   };
 
-  const addToCart = (items) => {
-    if (cartItems.indexOf(items) !== -1) 
-    return;
-    setCartItems([...cartItems, items]);
-    console.log(cartItems);
-  };
   return (
     <>
       <div>
@@ -93,7 +88,6 @@ const useStyles = makeStyles({
     color: "white",
     justifyContent: "center",
   },
-
 });
 
 export default Home;
