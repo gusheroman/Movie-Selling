@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import ModalCart from "./ModalCart";
+import ModalCart from "./Cart";
 const Navbar = () => {
   const classes = useStyles();
   return (

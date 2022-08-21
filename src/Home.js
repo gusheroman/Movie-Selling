@@ -44,7 +44,7 @@ const Home = () => {
   };
   return (
     <>
-      <div className={classes.root}>
+      <div>
         <div className={classes.container}>
           <Searchbar
             searchMovie={searchMovie}
@@ -93,13 +93,7 @@ const useStyles = makeStyles({
     color: "white",
     justifyContent: "center",
   },
-  root: {
-    padding: "72px 56px 0px 56px",
-    backgroundColor: "#100F0F",
-    minHeight: "100vh",
-    display: "flex",
-    justifyContent: "center",
-  },
+
 });
 
 export default Home;
