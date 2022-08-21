@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
-import MovieCard from "./components/header/MovieCard";
+import MovieCard from "./components/MovieCard";
 import Grid from "@material-ui/core/Grid";
-import Navbar from "./components/header/Navbar";
 import Searchbar from "./components/Searchbar";
 const Home = () => {
   const API_URL =
@@ -10,7 +9,7 @@ const Home = () => {
   const classes = useStyles();
   const [query, setQuery] = useState("");
   const [movie, setMovies] = useState([]);
-
+  const [cartItems, setCartItems] = useState([]);
   useEffect(() => {
     fetch(API_URL)
       .then((res) => res.json())
@@ -36,9 +35,15 @@ const Home = () => {
   const onChangeHandler = (e) => {
     setQuery(e.target.value);
   };
+
+  const addToCart = (items) => {
+    if (cartItems.indexOf(items) !== -1) 
+    return;
+    setCartItems([...cartItems, items]);
+    console.log(cartItems);
+  };
   return (
     <>
-      <Navbar />
       <div className={classes.root}>
         <div className={classes.container}>
           <Searchbar
@@ -61,7 +66,11 @@ const Home = () => {
                   style={{ padding: "56px" }}
                   key={items.id}
                 >
-                  <MovieCard key={items.id} {...items} />
+                  <MovieCard
+                    key={items.id}
+                    items={items}
+                    addToCart={addToCart}
+                  />
                 </Grid>
               ))}
             </Grid>

@@ -2,10 +2,9 @@ import React from "react";
 import { makeStyles } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
-
 const API_IMG = "https://image.tmdb.org/t/p/w500/";
-
-const MovieCard = ({ title, poster_path }) => {
+const MovieCard = ({ items, addToCart }) => {
+  const { title, poster_path } = items;
   const classes = useStyles();
   return (
     <div>
@@ -18,6 +17,7 @@ const MovieCard = ({ title, poster_path }) => {
             color="primary"
             variant="contained"
             style={{ height: "auto", width: "50%" }}
+            onClick={() => addToCart(items)}
           >
             Add To Cart
             <ShoppingCartOutlinedIcon style={{ marginLeft: "8px" }} />

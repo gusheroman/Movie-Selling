@@ -1,9 +1,8 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import ModalCart from "./ModalCart";
 const Navbar = () => {
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <h1
@@ -12,7 +11,7 @@ const Navbar = () => {
       >
         Movie
       </h1>
-      <ShoppingCartIcon style={{ cursor: "pointer" }} />
+      <ModalCart />
     </div>
   );
 };
